@@ -7,9 +7,14 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
+      :router="true"
       >
-      <el-menu-item index="1" style="margin-left:6%;">首页</el-menu-item>
-      <el-menu-item index="2">故事</el-menu-item>
+     <el-menu-item index="1" style="margin-left:10%;" :route="{name:'home'}">
+         首页
+     </el-menu-item>
+      <el-menu-item index="2" :route="{name:'story/home'}">
+         故事
+      </el-menu-item>
       <el-menu-item index="3">表白墙</el-menu-item>
       <el-menu-item index="4">轻松一刻</el-menu-item>
       <el-menu-item index="5" style="margin-left:50%;">
@@ -23,7 +28,7 @@
         </el-form>
       </el-menu-item>
       <el-menu-item index="6">
-        <a href="#" class="btn-login">QQ登录</a>
+        <a  class="btn-login" @click="login();">QQ登录</a>
       </el-menu-item>
     </el-menu>
 </template>
@@ -38,6 +43,9 @@ export default {
   methods: {
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
+    },
+    login () {
+      window.location.href = 'http://www.toheart.xin/login'
     }
   }
 }
