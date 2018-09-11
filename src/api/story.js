@@ -22,9 +22,21 @@ export function getSplendidStory () {
   })
 }
 
+/**
+ * 通过id查询id
+ * @param id
+ */
 export function getStoryById (id) {
   return request({
     url: '/story/showStory/' + id,
     method: 'get'
+  })
+}
+
+export function saveStory (data) {
+  return request({
+    url: '/story/saveStory',
+    method: 'POST',
+    data: data
   })
 }

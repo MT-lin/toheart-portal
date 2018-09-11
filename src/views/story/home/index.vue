@@ -35,7 +35,7 @@
     </el-col>
     <el-col :span="6">
       <router-link :to="{name:'story/write'}">
-        <div>写故事</div>
+        <el-button type="primary" style="width: 150px;height: 50px;font-size: 22px">写故事</el-button>
       </router-link>
       <el-row :gutter="20" style="border: 1px solid silver;margin-top: 50px; padding-bottom: 20px;border-radius: 5%;">
         <el-col :span="23"><div class="grid-content" style="margin-top: 15px;border-bottom: 1px solid silver">精彩故事推荐</div></el-col>
@@ -58,7 +58,11 @@ import pingfanImg from '@/assets/story/pingfan.png'
 import dyhImg from '@/assets/home/dyhImg.jpg'
 import favoritesImg from '@/assets/icon/favorites.png'
 import { getStoryList, getSplendidStory } from '@/api/story'
+import Navbar from '@/views/layout/components/Navbar'
 export default {
+  components: {
+    Navbar
+  },
   data () {
     return {
       pingfanImg,
@@ -94,6 +98,7 @@ export default {
     }
   },
   created () {
+    console.log(this.$props)
     getStoryList(this.currentPage, this.pageSize).then(response => {
       if (response.state) {
         this.totalCount = response.data.total

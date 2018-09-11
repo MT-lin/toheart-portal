@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+      console.log(111111111111111)
+      console.log(key)
     },
     login () {
       window.location.href = 'http://www.toheart.xin/login'
