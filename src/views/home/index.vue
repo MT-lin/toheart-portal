@@ -17,20 +17,24 @@
           <div class="story-every-bottom">
             <span class="icon-autor autor" v-text="story.storyAutor"></span>
             <span class="icon-praise praise" v-text="story.storyZan"></span>
-            <span class="icon-comment comment">20</span>
+            <span class="icon-comment comment" v-text="story.storyCommentNum">20</span>
           </div>
         </el-col>
       </el-row>
       <div class="grid-content bg-purple" style="margin-bottom: 20px;margin-top: 50px">
         <img :src="this.confessionImg" alt="告白导航图片" class="story-icon"/>
       </div>
-      <el-row v-for="confession in confessionList" :key="'confession' + confession.confessorId" style="height: 150px;border: 1px solid #CCC">
+      <el-row v-for="confession in confessionList" :key="'confession' + confession.confessorId" style="min-height: 150px;border: 1px solid #CCC">
         <el-col :span="24">
-          <div class="" v-text="confession.confessionContent" style="margin-top: 30px;text-align: left;margin-left: 50px;text-indent: 2em;"></div>
-          <el-row :gutter="20" style="position: relative;bottom: 0px;top: 55px;">
-            <el-col :span="3"><div class="grid-content ">详情</div></el-col>
+          <div class="" v-text="confession.confessionContent" style="margin-top: 30px;text-align: left;margin-left: 50px;text-indent: 2em;min-height: 100px"></div>
+          <el-row :gutter="20" style="position: relative;bottom: 0px;">
+            <el-col :span="3">
+              <router-link :to="{name:'confession/show',query:{id: confession.confessorId }}" style="color:#000;text-decoration: none">
+                <div class="grid-content ">详情</div>
+              </router-link>
+            </el-col>
             <el-col :span="3"><div class="grid-content "><img :src="favoritesImg" style="width: 20px;height: 20px;"/> <span v-text="confession.confessionLike" style="font-size: 20px;color: silver;"></span></div></el-col>
-            <el-col :span="5" :offset="9"><div class="grid-content" v-text="'--- ' + confession.confessor"></div></el-col>
+            <el-col :span="5" :offset="9"><div class="grid-content" v-text="'--- ' + confession.userName"></div></el-col>
             <el-col :span="3"><div class="grid-content" v-text="confession.confessionTime"></div></el-col>
           </el-row>
         </el-col>
@@ -39,7 +43,7 @@
     <el-col :span="6">
       <div  style="text-align: left;border: 1px solid silver;border-radius: 5%;">
         <p v-text="favConfession.confessionContent" style="text-indent: 2em;"></p>
-        <div v-text="'--- ' + favConfession.confessor" style="padding-left: 70%;padding-bottom: 15px"></div>
+        <div v-text="'--- ' + favConfession.userName" style="padding-left: 70%;padding-bottom: 15px"></div>
       </div>
       <el-row :gutter="20" style="margin-top: 50px">
         <el-col :span="10">

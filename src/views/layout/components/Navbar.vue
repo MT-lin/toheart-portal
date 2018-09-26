@@ -15,9 +15,9 @@
       <el-menu-item index="2" :route="{name:'story/home'}">
          故事
       </el-menu-item>
-      <el-menu-item index="3">表白墙</el-menu-item>
-      <el-menu-item index="4">轻松一刻</el-menu-item>
-      <el-menu-item index="5" style="margin-left:50%;">
+      <el-menu-item index="3" :route="{name:'confession/home'}">表白墙</el-menu-item>
+     <!-- <el-menu-item index="4">轻松一刻</el-menu-item> -->
+      <el-menu-item style="margin-left:45%;" :disable="true">
         <el-form :inline="true" class="demo-form-inline" style="margin-top:10px;">
           <el-form-item>
             <el-input placeholder="20岁那年"></el-input>
@@ -27,13 +27,22 @@
           </el-form-item>
         </el-form>
       </el-menu-item>
-      <el-menu-item index="6">
-        <a  class="btn-login" @click="login();">QQ登录</a>
+      <el-menu-item>
+       <span  v-text="'欢迎 ' + user.userName" v-if="user.userId !== ''"></span>
+      </el-menu-item>
+      <el-menu-item>
+        <a  class="btn-login" @click="login();" v-if="user.userId === '' || user.userId === null">QQ登录</a>
+        <a  class="btn-login" @click="userLogout();" v-else-if="user.userId !== ''">退出登录</a>
       </el-menu-item>
     </el-menu>
 </template>
 <script>
+import { getUser, logout } from '@/api/home'
+import { mapState } from 'vuex'
 export default {
+  computed: mapState([
+    'user'
+  ]),
   data () {
     return {
       activeIndex: '1',
@@ -46,8 +55,41 @@ export default {
       console.log(key)
     },
     login () {
-      window.location.href = 'http://www.toheart.xin/login'
+      window.location.href = 'http://www.toheart.xin:5201/login'
+    },
+    userLogout () {
+      logout().then(response => {
+        if (response.state) {
+          const data = {
+            userId: '',
+            userName: '',
+            gender: '',
+            province: '',
+            city: '',
+            birthday: '',
+            imgUrl: ''
+          }
+          this.$store.commit('SET_USER', data)
+          this.$router.push('home')
+        }
+      })
     }
+  },
+  created () {
+    getUser().then(response => {
+      if (response.state) {
+        const data = {
+          userId: response.data.user.userId,
+          userName: response.data.user.userName,
+          gender: response.data.user.gender,
+          province: response.data.user.province,
+          city: response.data.user.city,
+          birthday: response.data.user.birthday,
+          imgUrl: response.data.user.imgUrl
+        }
+        this.$store.commit('SET_USER', data)
+      }
+    })
   }
 }
 </script>

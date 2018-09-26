@@ -3,7 +3,7 @@
     <el-col :span="5" style="text-align: right">
       <el-upload
         class="avatar-uploader"
-        action="http://localhost:5201/pic/upload"
+        action="http://www.toheart.xin:5201/pic/upload"
         :show-file-list="false"
         :on-success="handleAvatarSuccess"
         :before-upload="beforeAvatarUpload">

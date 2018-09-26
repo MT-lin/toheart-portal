@@ -17,7 +17,7 @@
           <div class="story-every-bottom">
             <span class="icon-autor autor" v-text="story.storyAutor"></span>
             <span class="icon-praise praise" v-text="story.storyZan"></span>
-            <span class="icon-comment comment">20</span>
+            <span class="icon-comment comment" v-text="story.storyCommentNum">20</span>
           </div>
         </el-col>
       </el-row>
@@ -34,9 +34,14 @@
       </div>
     </el-col>
     <el-col :span="6">
-      <router-link :to="{name:'story/write'}">
-        <el-button type="primary" style="width: 150px;height: 50px;font-size: 22px">写故事</el-button>
-      </router-link>
+      <div v-if="user.userId !== ''">
+        <router-link :to="{name:'story/write'}">
+          <el-button type="primary" style="width: 150px;height: 50px;font-size: 22px">写故事</el-button>
+        </router-link>
+      </div>
+      <div v-if="user.userId === ''">
+        <el-button type="primary" style="width: 150px;height: 50px;font-size: 22px"  @click="login();">写故事</el-button>
+      </div>
       <el-row :gutter="20" style="border: 1px solid silver;margin-top: 50px; padding-bottom: 20px;border-radius: 5%;">
         <el-col :span="23"><div class="grid-content" style="margin-top: 15px;border-bottom: 1px solid silver">精彩故事推荐</div></el-col>
         <el-row :gutter="20" v-for="splendidStory in splendidStoryList" :key="'splendidStory' + splendidStory.storyId" style="margin-left: 2px">
@@ -59,7 +64,11 @@ import dyhImg from '@/assets/home/dyhImg.jpg'
 import favoritesImg from '@/assets/icon/favorites.png'
 import { getStoryList, getSplendidStory } from '@/api/story'
 import Navbar from '@/views/layout/components/Navbar'
+import { mapState } from 'vuex'
 export default {
+  computed: mapState([
+    'user'
+  ]),
   components: {
     Navbar
   },
@@ -78,6 +87,9 @@ export default {
     }
   },
   methods: {
+    login () {
+      window.location.href = 'http://www.toheart.xin:5201/login'
+    },
     handleSizeChange (val) {
       console.log('--++==' + val)
       this.pageSize = val

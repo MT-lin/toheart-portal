@@ -17,3 +17,18 @@ export function getFavConfession () {
     method: 'get'
   })
 }
+
+export function addConfession (data) {
+  return request({
+    url: '/confession/addConfession',
+    method: 'get',
+    params: data
+  })
+}
+
+export function getConfessionById (id) {
+  return request({
+    url: '/confession/getConfession/' + id,
+    method: 'get'
+  })
+}

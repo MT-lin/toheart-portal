@@ -51,6 +51,37 @@ export const constantRouterMap = [
       component: () => import('@/views/story/write/index'),
       meta: {title: '讲故事-toheart'}
     }]
+  },
+  {
+    path: 'confession',
+    component: Layout,
+    children: [{
+      name: 'confession/home',
+      path: '/confession/home',
+      component: () => import('@/views/confession/home/index'),
+      meta: {title: '告白Home-toheart'}
+    }]
+  },
+  {
+    path: 'confession',
+    component: Layout,
+    children: [{
+      name: 'confession/write',
+      path: '/confession/write',
+      component: () => import('@/views/confession/write/index'),
+      meta: {title: '告白吧-toheart'}
+    }]
+  },
+  {
+    path: 'confession',
+    component: Layout,
+    children: [{
+      name: 'confession/show',
+      path: '/confession/show',
+      query: ':id',
+      component: () => import('@/views/confession/show/index'),
+      meta: {title: '告白详情-toheart'}
+    }]
   }
 ]
 const router = new Router({

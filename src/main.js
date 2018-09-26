@@ -3,10 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueHtml5Editor from 'vue-html5-editor'
+import VueSession from 'vue-session'
 
+Vue.use(VueSession)
 Vue.use(ElementUI, {
   size: 'medium' // set element-ui default size
 })
@@ -40,7 +43,7 @@ Vue.use(VueHtml5Editor, {
   image: {
     sizeLimit: 512 * 1024,
     upload: {
-      url: 'http://localhost:5201/pic/upload',
+      url: 'http://www.toheart.xin:5201/pic/upload',
       headers: {},
       fieldName: 'file'
     },
@@ -134,6 +137,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

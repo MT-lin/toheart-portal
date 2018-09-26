@@ -22,7 +22,8 @@
     "vue-router": "^3.0.1",
     "axios": "0.18.0",
     "js-cookie": "2.2.0",
-    "vue-html5-editor": "1.1.1"
+    "vue-html5-editor": "1.1.1",
+    "vue-session":"1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
