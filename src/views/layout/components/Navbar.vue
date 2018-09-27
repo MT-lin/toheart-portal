@@ -17,7 +17,15 @@
       </el-menu-item>
       <el-menu-item index="3" :route="{name:'confession/home'}">表白墙</el-menu-item>
      <!-- <el-menu-item index="4">轻松一刻</el-menu-item> -->
-      <el-menu-item style="margin-left:45%;" :disable="true">
+
+      <el-menu-item style="float:right;padding-right: 100px">
+         <a  class="btn-login" @click="login();" v-if="user.userId === '' || user.userId === null">QQ登录</a>
+         <a  class="btn-login" @click="userLogout();" v-else-if="user.userId !== ''">退出登录</a>
+      </el-menu-item>
+      <el-menu-item style="float:right">
+         <span  v-text="'欢迎 ' + user.userName" v-if="user.userId !== ''"></span>
+      </el-menu-item>
+      <el-menu-item style="float:right;" :disable="true">
         <el-form :inline="true" class="demo-form-inline" style="margin-top:10px;">
           <el-form-item>
             <el-input placeholder="20岁那年"></el-input>
@@ -26,13 +34,6 @@
             <span class="el-icon-search"></span>
           </el-form-item>
         </el-form>
-      </el-menu-item>
-      <el-menu-item>
-       <span  v-text="'欢迎 ' + user.userName" v-if="user.userId !== ''"></span>
-      </el-menu-item>
-      <el-menu-item>
-        <a  class="btn-login" @click="login();" v-if="user.userId === '' || user.userId === null">QQ登录</a>
-        <a  class="btn-login" @click="userLogout();" v-else-if="user.userId !== ''">退出登录</a>
       </el-menu-item>
     </el-menu>
 </template>
