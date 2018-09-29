@@ -14,8 +14,8 @@
               <el-col :span="24">
                 <div class="content" v-text="confession.confessionContent">123</div>
               </el-col>
-              <el-col :span="24" style="max-width: 80%;margin-top: 20px;padding-left: 80px">
-                <img :src="testImg"/>
+              <el-col :span="24" style="margin-top: 20px;">
+                <img :src="confession.confessionImgUrl" style="max-width: 80%;"/>
               </el-col>
             </el-row>
             <el-row style="margin-top: 26px;">
@@ -113,6 +113,7 @@ export default {
       const content = this.discussContent
       increaseComment(id, type, 0, content).then(response => {
         if (response.state) {
+          this.discussContent = ''
           this.getCommentList(this.$route.query.id, 2)
           console.log('------------')
         }

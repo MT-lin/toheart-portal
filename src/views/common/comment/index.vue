@@ -75,6 +75,7 @@ export default {
       increaseComment(id, type, fatherId, this.discussContent).then(response => {
         this.getCommentList(id, type)
         this.isShow = false
+        this.discussContent = ''
         console.log('-------')
       })
     },

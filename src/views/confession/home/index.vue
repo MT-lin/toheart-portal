@@ -120,6 +120,7 @@ export default {
       })
     },
     handleCurrentChange (val) {
+      this.currentPage = val
       getConfessionList(val, this.pageSize).then(response => {
         if (response.state) {
           this.confessionList = response.data.confessionList

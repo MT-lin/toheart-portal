@@ -82,6 +82,7 @@ export default {
       const content = this.discussContent
       increaseComment(id, type, 0, content).then(response => {
         if (response.state) {
+          this.discussContent = ''
           this.getCommentList(this.$route.query.id, 1)
           console.log('------------')
         }

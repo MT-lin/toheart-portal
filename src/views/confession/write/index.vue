@@ -47,14 +47,13 @@ export default {
       fileList: [],
       isUpload: false,
       confessionImgUrl: '',
-      userId: this.user.userId,
       isDisable: false
     }
   },
   methods: {
     publish () {
       const data = {
-        userId: this.userId,
+        userId: this.user.userId,
         confessionContent: this.content,
         confessionImgUrl: this.confessionImgUrl
       }
