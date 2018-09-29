@@ -17,8 +17,8 @@
               <el-col :span="24">
                 <div class="content" v-text="confession.confessionContent">123</div>
               </el-col>
-              <el-col :span="24" style="max-width: 80%;margin-top: 20px;">
-                <img :src="confession.confessionImgUrl"/>
+              <el-col :span="24" style="margin-top: 20px;">
+                <img :src="confession.confessionImgUrl" style="max-width: 80%;"/>
               </el-col>
             </el-row>
             <el-row style="margin-top: 26px;">

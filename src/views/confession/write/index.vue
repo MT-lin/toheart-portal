@@ -36,14 +36,18 @@
 </template>
 <script>
 import { addConfession } from '@/api/confession'
+import { mapState } from 'vuex'
 export default {
+  computed: mapState([
+    'user'
+  ]),
   data () {
     return {
       content: '',
       fileList: [],
       isUpload: false,
       confessionImgUrl: '',
-      userId: 3,
+      userId: this.user.userId,
       isDisable: false
     }
   },
